@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B26C452B-B4DC-452B-A980-CD4B207E7632}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mpc.LimiaUrbanus.DataBase", "Mpc.LimiaUrbanus.DataBase\Mpc.LimiaUrbanus.DataBase.csproj", "{ADFD5722-1A84-46FD-99BF-2E9AB7DDDA37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mpc.LimiaUrbanus.DataBase.RunExample", "Mpc.LimiaUrbanus.DataBase.RunExample\Mpc.LimiaUrbanus.DataBase.RunExample.csproj", "{A8D519C8-CBF9-476C-BE05-2110D1CB2B06}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ADFD5722-1A84-46FD-99BF-2E9AB7DDDA37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADFD5722-1A84-46FD-99BF-2E9AB7DDDA37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADFD5722-1A84-46FD-99BF-2E9AB7DDDA37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADFD5722-1A84-46FD-99BF-2E9AB7DDDA37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8D519C8-CBF9-476C-BE05-2110D1CB2B06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8D519C8-CBF9-476C-BE05-2110D1CB2B06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8D519C8-CBF9-476C-BE05-2110D1CB2B06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8D519C8-CBF9-476C-BE05-2110D1CB2B06}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C7DBAA7F-4680-4919-949C-37F8423A828B}
+	EndGlobalSection
+EndGlobal

@@ -1,9 +1,4 @@
-# Imovirtual
-
-
-## File Example
-
-```xml
+<?xml version="1.0" encoding="UTF-8"?>
 <data>
     <advert>
         <external_id>1</external_id>
@@ -56,7 +51,7 @@
         </images>
         <price>250</price>
         <area>100</area>
-        <size></size>
+        <size/>
         <consultant_email>tiagopita@limiaurbanus.pt</consultant_email>
         <phone>967205258</phone>
         <description>
@@ -87,11 +82,29 @@
         <taxid>123456789</taxid>
         <company_name>123456789</company_name>
     </user>
+        <user>
+        <email>tiagopita@limiaurbanus.pt</email>
+        <first_name>Tiago</first_name>
+        <last_name>Pita</last_name>
+        <address>Rua Doutor Cassiano Baptista 192</address>
+        <postal_code>4990-643</postal_code>
+        <city>Ponte de Lima</city>
+        <country>Portugal</country>
+        <phone>967205258</phone>
+        <ami>12345</ami>
+        <taxid>123456789</taxid>
+        <company_name>123456789</company_name>
+    </user>
     <consultant>
         <email>tiagopita@limiaurbanus.pt</email>
         <name>Tiago Pita</name>
         <phone>967205258</phone>
         <photo>https://raw.githubusercontent.com/MiguelCosta/limiaurbanus/master/LimiaUrbanus.WebSite/Files/FotografiaTiagoCunha.jpg</photo>
     </consultant>
+        <consultant>
+        <email>tiagopita@limiaurbanus.pt</email>
+        <name>Tiago Pita</name>
+        <phone>967205258</phone>
+        <photo>https://raw.githubusercontent.com/MiguelCosta/limiaurbanus/master/LimiaUrbanus.WebSite/Files/FotografiaTiagoCunha.jpg</photo>
+    </consultant>
 </data>
-```
