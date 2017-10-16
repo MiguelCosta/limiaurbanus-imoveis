@@ -1,9 +1,15 @@
 ﻿namespace Mpc.LimiaUrbanus.DataBase.RunExample
 {
+    using System.Threading.Tasks;
+
     public interface IInformationService
     {
-        void GetDistritos();
+        Task GetDistritosAsync();
 
-        void GetImoveis();
+        Task GetImoveisAsync();
+
+        Task<string> GetXmlFromImoveisAsync();
+
+        Task SaveXmlTextToFileAsync(string xmlText);
     }
 }

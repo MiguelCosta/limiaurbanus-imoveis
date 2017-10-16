@@ -1,36 +1,61 @@
 ﻿namespace Mpc.LimiaUrbanus.DataBase.RunExample
 {
-    using System.Linq;
+    using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
     using Mpc.LimiaUrbanus.DataBase.Models;
+    using Mpc.LimiaUrbanus.Services;
     using Newtonsoft.Json;
 
     public class InformationService : IInformationService
     {
         private readonly LimiaUrbanusContext _dataBase;
         private readonly ILogger<InformationService> _logger;
+        private readonly IXmlGenerator _xmlGenerator;
 
-        public InformationService(ILoggerFactory loggerFactory, LimiaUrbanusContext dataBase)
+        public InformationService(
+            ILoggerFactory loggerFactory,
+            IXmlGenerator xmlGenerator,
+            LimiaUrbanusContext dataBase)
         {
             _logger = loggerFactory.CreateLogger<InformationService>();
+            _xmlGenerator = xmlGenerator;
             _dataBase = dataBase;
         }
 
-        public void GetDistritos()
+        public async Task GetDistritosAsync()
         {
             _logger.LogInformation("DISTRITOS");
-            var distritos = _dataBase.Distrito
+            var distritos = await _dataBase.Distrito
                 .Include(d => d.Concelho).ThenInclude(c => c.Freguesia)
-                .ToList();
+                .ToListAsync();
             Print(distritos);
         }
 
-        public void GetImoveis()
+        public async Task GetImoveisAsync()
         {
             _logger.LogInformation("IMOVEIS");
-            var imoveis = _dataBase.Imovel.ToList();
+            var imoveis = await _dataBase.Imovel.ToListAsync();
             Print(imoveis);
+        }
+
+        public async Task<string> GetXmlFromImoveisAsync()
+        {
+            var imoveis = await _dataBase.Imovel
+                .Include(i => i.ClasseEnergetica)
+                .Include(i => i.Estado)
+                .Include(i => i.FilePath)
+                .Include(i => i.Freguesia).ThenInclude(f => f.Concelho).ThenInclude(c => c.Distrito)
+                .Include(i => i.Objetivo)
+                .Include(i => i.Tipo)
+                .Include(i => i.Tipologia)
+                .ToListAsync();
+            return _xmlGenerator.Generate(imoveis);
+        }
+
+        public async Task SaveXmlTextToFileAsync(string xmlText)
+        {
+            await System.IO.File.WriteAllTextAsync("LimiaUrbanus.xml", xmlText);
         }
 
         private void Print(object obj)

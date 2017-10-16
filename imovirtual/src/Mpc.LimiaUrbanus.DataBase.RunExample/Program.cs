@@ -2,18 +2,20 @@
 {
     using System;
     using System.IO;
+    using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using Mpc.LimiaUrbanus.DataBase.Models;
+    using Mpc.LimiaUrbanus.Services;
 
     internal class Program
     {
         private static IConfigurationRoot _configuration;
         private static ILogger<Program> _logger;
 
-        private static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var services = new ServiceCollection();
             Configure();
@@ -25,7 +27,8 @@
 
             _logger.LogInformation("START");
             var info = serviceProvider.GetService<IInformationService>();
-            info.GetDistritos();
+            var xml = await info.GetXmlFromImoveisAsync();
+            await info.SaveXmlTextToFileAsync(xml);
 
             Console.ReadLine();
         }
@@ -54,7 +57,9 @@
         private static void ConfigureServices(IServiceCollection services)
         {
             services.AddLogging();
+            services.AddSingleton(_configuration);
             services.AddSingleton<IInformationService, InformationService>();
+            services.AddSingleton<IXmlGenerator, XmlGenerator>();
             services.AddDbContext<LimiaUrbanusContext>(options =>
                     options.UseSqlServer(_configuration.GetConnectionString("LimiaUrbanusDatabase")));
         }
