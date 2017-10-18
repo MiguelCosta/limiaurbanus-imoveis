@@ -11,11 +11,11 @@
     {
         private readonly LimiaUrbanusContext _dataBase;
         private readonly ILogger<InformationService> _logger;
-        private readonly IXmlGenerator _xmlGenerator;
+        private readonly IImovirtualXmlGenerator _xmlGenerator;
 
         public InformationService(
             ILoggerFactory loggerFactory,
-            IXmlGenerator xmlGenerator,
+            IImovirtualXmlGenerator xmlGenerator,
             LimiaUrbanusContext dataBase)
         {
             _logger = loggerFactory.CreateLogger<InformationService>();

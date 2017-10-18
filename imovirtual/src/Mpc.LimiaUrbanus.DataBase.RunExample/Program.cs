@@ -59,7 +59,7 @@
             services.AddLogging();
             services.AddSingleton(_configuration);
             services.AddSingleton<IInformationService, InformationService>();
-            services.AddSingleton<IXmlGenerator, XmlGenerator>();
+            services.AddSingleton<IImovirtualXmlGenerator, ImovirtualXmlGenerator>();
             services.AddDbContext<LimiaUrbanusContext>(options =>
                     options.UseSqlServer(_configuration.GetConnectionString("LimiaUrbanusDatabase")));
         }
