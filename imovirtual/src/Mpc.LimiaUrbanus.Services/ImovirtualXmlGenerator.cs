@@ -71,6 +71,15 @@
             [5] = "férias"
         };
 
+        private static readonly Dictionary<int, string> _postalCodes = new Dictionary<int, string>
+        {
+            [3] = "4990-000",
+            [11] = "4970-000",
+            [12] = "4900-000",
+            [13] = "4750-000",
+            [15] = "4980-000"
+        };
+
         private static readonly Dictionary<int, string> _sizes = new Dictionary<int, string>
         {
             [1] = "",
@@ -108,6 +117,7 @@
                 xml.AppendLine("<advert>");
                 xml.AppendLine($"<external_id>{imovel.ImovelId}</external_id>");
                 xml.AppendLine($"<email>{_configuration["XmlSettings:email"]}</email>");
+                xml.AppendLine($"<postal_code>{GetPostalCode(imovel)}</postal_code>");
                 xml.AppendLine($"<district>{imovel.Freguesia.Concelho.Distrito.Nome}</district>");
                 xml.AppendLine($"<state>{imovel.Freguesia.Concelho.Nome}</state>");
                 xml.AppendLine($"<parish>{imovel.Freguesia.Nome}</parish>");
@@ -192,6 +202,15 @@
         private string GetOfferType(Imovel imovel)
         {
             return _offerTypes[imovel.ObjetivoId];
+        }
+
+        private string GetPostalCode(Imovel imovel)
+        {
+            if (_postalCodes.ContainsKey(imovel.Freguesia.ConcelhoId))
+            {
+                return _postalCodes[imovel.Freguesia.ConcelhoId];
+            }
+            return "0000-000";
         }
 
         private string GetSize(Imovel imovel)
