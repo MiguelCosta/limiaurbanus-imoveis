@@ -1,5 +1,7 @@
 ﻿namespace Mpc.LimiaUrbanus.DataBase.RunExample
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
@@ -39,9 +41,9 @@
             Print(imoveis);
         }
 
-        public async Task<string> GetXmlFromImoveisAsync()
+        public async Task<string> GetXmlFromImoveisAsync(IEnumerable<string> referencias)
         {
-            var imoveis = await _dataBase.Imovel
+            var imoveisQuery = _dataBase.Imovel
                 .Include(i => i.ClasseEnergetica)
                 .Include(i => i.Estado)
                 .Include(i => i.FilePath)
@@ -49,7 +51,14 @@
                 .Include(i => i.Objetivo)
                 .Include(i => i.Tipo)
                 .Include(i => i.Tipologia)
-                .ToListAsync();
+                .AsQueryable();
+
+            if (referencias != null && referencias.Any())
+            {
+                imoveisQuery = imoveisQuery.Where(i => referencias.Contains(i.Referencia));
+            }
+
+            var imoveis = await imoveisQuery.ToListAsync();
             return _xmlGenerator.Generate(imoveis);
         }
 

@@ -1,5 +1,6 @@
 ﻿namespace Mpc.LimiaUrbanus.DataBase.RunExample
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     public interface IInformationService
@@ -8,7 +9,7 @@
 
         Task GetImoveisAsync();
 
-        Task<string> GetXmlFromImoveisAsync();
+        Task<string> GetXmlFromImoveisAsync(IEnumerable<string> referencias);
 
         Task SaveXmlTextToFileAsync(string xmlText);
     }

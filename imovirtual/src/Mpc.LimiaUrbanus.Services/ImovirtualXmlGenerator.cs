@@ -73,11 +73,11 @@
 
         private static readonly Dictionary<int, string> _postalCodes = new Dictionary<int, string>
         {
-            [3] = "4990-000",
-            [11] = "4970-000",
-            [12] = "4900-000",
-            [13] = "4750-000",
-            [15] = "4980-000"
+            [3] = "4990-540",
+            [11] = "4970-500",
+            [12] = "4900-001",
+            [13] = "4750-001",
+            [15] = "4980-610"
         };
 
         private static readonly Dictionary<int, string> _sizes = new Dictionary<int, string>
@@ -132,7 +132,7 @@
                 xml.AppendLine("</images>");
                 xml.AppendLine($"<price>{imovel.Preco}</price>");
                 xml.AppendLine($"<area>{imovel.Area}</area>");
-                xml.AppendLine($"<size>{GetSize(imovel)}</size>");
+                xml.AppendLine(GetSize(imovel));
                 xml.AppendLine($"<consultant_email>{_configuration["XmlSettings:consultant_email"]}</consultant_email>");
                 xml.AppendLine($"<phone>{_configuration["XmlSettings:phone"]}</phone>");
                 xml.AppendLine($"<description><![CDATA[{imovel.Descricao}]]></description>");
@@ -215,9 +215,9 @@
 
         private string GetSize(Imovel imovel)
         {
-            if (imovel.TipologiaId.HasValue)
+            if (imovel.TipologiaId.HasValue && !string.IsNullOrWhiteSpace(imovel.Tipologia.Nome))
             {
-                return _sizes[imovel.TipologiaId.Value];
+                return $"<size>{_sizes[imovel.TipologiaId.Value]}</size>";
             }
 
             return string.Empty;

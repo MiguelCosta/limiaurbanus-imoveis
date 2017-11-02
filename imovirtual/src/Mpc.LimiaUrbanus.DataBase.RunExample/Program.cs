@@ -1,6 +1,7 @@
 ﻿namespace Mpc.LimiaUrbanus.DataBase.RunExample
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
@@ -26,8 +27,30 @@
             ConfigureLogging(serviceProvider);
 
             _logger.LogInformation("START");
+
+            var imoveis2Export = new List<string>
+            {
+                "mds2337",
+                "lu2028",
+                "lu1128",
+                "mds2697",
+                "lu1115",
+                "MDS2139",
+                "lu1114",
+                "mds0517",
+                "cas_348",
+                "lu1126",
+                "lu0040",
+                "lu0042",
+                "lu1116",
+                "mds0320",
+                "lu1117",
+                "150194",
+                "140032"
+            };
+
             var info = serviceProvider.GetService<IInformationService>();
-            var xml = await info.GetXmlFromImoveisAsync();
+            var xml = await info.GetXmlFromImoveisAsync(imoveis2Export);
             await info.SaveXmlTextToFileAsync(xml);
 
             Console.ReadLine();
